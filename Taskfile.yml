@@ -6,7 +6,6 @@ env:
   BUILD_FOLDER: build
   COVERAGE_OUT_FILE: coverage.out
   COVERAGE_HTML_FILE: coverage.html
-  ORM_OUTPUT_FOLDER: src/main/app/ent
 
 tasks:
   lint:
@@ -16,7 +15,7 @@ tasks:
   test:
     desc: Run test.
     cmds:
-      # - go test -race ./...
+      #- go test -race ./...
       - go test ./...
   coverage:
     desc: Makes report coverage.
@@ -27,7 +26,6 @@ tasks:
   clean:
     desc: Clean binaries and reports.
     cmds:
-      - rm -rf $BUILD_FOLDER
       - rm -rf $COVERAGE_OUT_FILE $COVERAGE_HTML_FILE
   download:
     desc: Run go mod tidy.
@@ -55,8 +53,3 @@ tasks:
     desc: Run [build] task.
     cmds:
       - task: build
-  run:
-    desc: Run $ENTRY_POINT
-    cmds:
-      - echo '{{OS}}'
-      - ./$BUILD_FOLDER/$ENTRY_POINT
