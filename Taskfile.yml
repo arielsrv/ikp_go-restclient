@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://json.schemastore.org/taskfile.json
+version: '3'
+
+env:
+  SOURCE_FOLDER: rest
+  BUILD_FOLDER: build
+  COVERAGE_OUT_FILE: coverage.out
+  COVERAGE_HTML_FILE: coverage.html
+  ORM_OUTPUT_FOLDER: src/main/app/ent
+
+tasks:
+  lint:
+    desc: Use golangci-lint (.golangci.yml).
+    cmds:
+      - golangci-lint run --fix
+  test:
+    desc: Run test.
+    cmds:
+      # - go test -race ./...
+      - go test ./...
+  coverage:
+    desc: Makes report coverage.
+    cmds:
+      - go test ./... -covermode=count -coverprofile=$COVERAGE_OUT_FILE
+      - go tool cover -html $COVERAGE_OUT_FILE -o $COVERAGE_HTML_FILE
+      - go tool cover -func=$COVERAGE_OUT_FILE -o=$COVERAGE_OUT_FILE
+  clean:
+    desc: Clean binaries and reports.
+    cmds:
+      - rm -rf $BUILD_FOLDER
+      - rm -rf $COVERAGE_OUT_FILE $COVERAGE_HTML_FILE
+  download:
+    desc: Run go mod tidy.
+    cmds:
+      - go mod tidy
+  upgrade:
+    desc: Check for latest direct dependencies.
+    cmds:
+      - go-mod-upgrade
+  build:
+    desc: Build the go EXECUTABLE.
+    generates:
+      - server
+    interactive: true
+    cmds:
+      - go build -v ./$SOURCE_FOLDER/...
+  all:
+    desc: Run relevant tasks.
+    cmds:
+      - task: download
+      - task: lint
+      - task: build
+      - task: test
+  default:
+    desc: Run [build] task.
+    cmds:
+      - task: build
+  run:
+    desc: Run $ENTRY_POINT
+    cmds:
+      - echo '{{OS}}'
+      - ./$BUILD_FOLDER/$ENTRY_POINT
