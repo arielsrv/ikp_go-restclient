@@ -15,7 +15,7 @@
 //   - Response Caching, based on response headers (cache-control, last-modified, etag, expires)
 //   - Local caching strategies: TTL, LRU & Max Byte Size.
 //   - Mockups!
-//   - Fork-Join request pattern, for sending many requests concurrently, getting better client perfomance.
+//   - Fork-Join request pattern, for sending many requests concurrently, getting better client performance.
 //   - Async request pattern.
 //   - Request Body can be `string`, `[]byte`, `struct` & `map`
 //   - Automatic marshal and unmarshal for `JSON` and `XML` Content-Type. Default JSON.
@@ -36,11 +36,12 @@
 //   - Testing +95%
 //
 // v0.5
-//   - Plugable external caches like Memcached
+//   - Pluggable external caches like Memcached
 //
 // # Caching
 //
-// Caching is done by two strategies working together: Time To Live (TTL) and
+//	is done by two strategies working together: Time To Live (TTL) and
+//
 // Least Recently Used (LRU). Objects are inserted in the cache based on
 // Response Headers. You can establish a maximum Memory Size for the cache
 // and objects are flushed based on time expiration (TTL) or by hitting the maximum
@@ -85,7 +86,7 @@
 // ForkJoin let you **fork** requests, and **wait** until all of them have return.
 //
 // Concurrent has methods for Get, Post, Put, Patch, Delete, Head & Options,
-// with the almost the same API as the synchronous methods.
+// with almost the same API as the synchronous methods.
 // The difference is that these methods return a FutureResponse, which holds a pointer to
 // Response. Response inside FutureResponse is nil until request has finished.
 //
@@ -134,7 +135,8 @@
 //
 // # RequestBuilder
 //
-// RequestBuilder gives you the power to go beyond defaults.
+//	gives you the power to go beyond defaults.
+//
 // It is possible to set up headers, timeout, baseURL, proxy, contentType, not to use
 // cache, directly disabling timeout (in an explicit way), and setting max idle connections.
 //

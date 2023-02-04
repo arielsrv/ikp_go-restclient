@@ -1,3 +1,3 @@
 module github.com/arielsrv/ikp_go-restclient
 
-go 1.19
+go 1.20

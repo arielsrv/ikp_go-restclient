@@ -148,7 +148,6 @@ func (rb *RequestBuilder) marshalReqBody(body interface{}) (io.Reader, error) {
 	}
 	return nil, nil
 }
-
 func (rb *RequestBuilder) getClient() *http.Client {
 	// This will be executed only once
 	// per request builder
