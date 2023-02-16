@@ -20,7 +20,7 @@ jobs:
           check-latest: true
 
       - name: arduino/setup-task
-        uses: arduino/setup-task@1.0.2
+        uses: arduino/setup-task@v1.0.3
 
       - name: Build
         run: task build
@@ -37,7 +37,7 @@ jobs:
           filename: coverage.out
 
       - name: Verify Changed files
-        uses: tj-actions/verify-changed-files@v12.0
+        uses: tj-actions/verify-changed-files@v13.1
         id: verify-changed-files
         with:
           files: README.md
