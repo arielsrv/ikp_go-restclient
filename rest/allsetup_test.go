@@ -42,7 +42,7 @@ func TestMain(m *testing.M) {
 }
 
 func setup() {
-	rand.Seed(time.Now().UnixNano())
+	rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	users = make([]User, len(userList))
 	for i, n := range userList {
