@@ -253,7 +253,7 @@ func allUsers(writer http.ResponseWriter, req *http.Request) {
 	// Options
 	if req.Method == http.MethodOptions {
 		b := []byte(`User resource
-		id: Id of the user
+		id: ID of the user
 		name: Name of the user`)
 
 		writer.Header().Set("Content-Type", "text/plain")

@@ -54,6 +54,27 @@ func TestGetFillUpJSON(t *testing.T) {
 	t.Fatal("Couldn't found Alice")
 }
 
+func TestGetTypedFillUpJSON(t *testing.T) {
+	resp := rb.Get("/user")
+
+	if resp.StatusCode != http.StatusOK {
+		t.Fatal("Status != OK (200)")
+	}
+
+	result, err := rest.TypedFillUp[[]User](resp)
+	if err != nil {
+		t.Fatal("Json fill up failed. Error: " + err.Error())
+	}
+
+	for _, v := range *result {
+		if v.Name == "Alice" {
+			return
+		}
+	}
+
+	t.Fatal("Couldn't found Alice")
+}
+
 func TestGetFillUpXML(t *testing.T) {
 	var u []User
 

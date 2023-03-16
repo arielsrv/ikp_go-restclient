@@ -75,6 +75,17 @@ func (r *Response) FillUp(fill interface{}) error {
 	return errors.New("response format neither JSON nor XML")
 }
 
+// TypedFillUp FillUp set the *fill* parameter with the corresponding JSON or XML response.
+// fill could be `struct` or `map[string]interface{}`.
+func TypedFillUp[TResult any](r *Response) (*TResult, error) {
+	target := new(TResult)
+	err := r.FillUp(&target)
+	if err != nil {
+		return nil, err
+	}
+	return target, nil
+}
+
 // CacheHit shows if a response was get from the cache.
 func (r *Response) CacheHit() bool {
 	if hit, ok := r.cacheHit.Load().(bool); hit && ok {

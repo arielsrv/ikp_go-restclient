@@ -74,7 +74,7 @@
 //	}
 //
 //	body := new(User)
-//	body.Id = 1
+//	body.ID = 1
 //	body.Name = "Alice"
 //
 //	// body will be marshall as JSON
